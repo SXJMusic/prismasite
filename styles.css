@@ -173,7 +173,7 @@ html[data-theme="dark"] .theme-toggle {
   text-transform: uppercase;
   color: var(--ink-soft);
   text-align: center;
-  margin-bottom: .34rem;
+  margin-bottom: .68rem;
 }
 
 /* Intro description text below H1 */
@@ -212,7 +212,7 @@ html[data-theme="dark"] .theme-toggle {
   /* center the carousel section within the main canvas */
   margin: 0 auto;
   max-width: 47.5rem; /* 760px */
-  padding: 1.125rem 0.75rem; /* 18px 12px */
+  /* padding: 1.25rem; 18px 12px */
   box-sizing: border-box;
 }
 

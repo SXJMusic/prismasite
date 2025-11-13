@@ -88,3 +88,4 @@ prismasite/
 1. Go to repository Settings → Pages
 2. Under "Custom domain", enter your domain
 3. Configure your DNS provider to point to GitHub Pages
+# prismasite

@@ -3,114 +3,163 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Prismasite</title>
+  <title>PRISMAFUTURE — Artwork for creative projects</title>
+
+  <!-- Primary meta -->
+  <meta name="description" content="PRISMAFUTURE creates artwork for creative projects — cover art, promotional graphics, and visual identity for musicians and creatives.">
+  <meta name="robots" content="index, follow">
+  <link rel="canonical" href="https://yourdomain.example/">
+
+  <!-- Open Graph / Social -->
+  <meta property="og:title" content="PRISMAFUTURE — 100% Custom Cover Art">
+  <meta property="og:description" content="Cover art and visual identity for musicians, labels and creative projects.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://yourdomain.example/">
+  <meta property="og:image" content="https://yourdomain.example/gp-logo.png">
+  <meta name="twitter:card" content="summary_large_image">
+
+  <!-- Preconnect + fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Theme color for mobile browsers -->
+  <meta name="theme-color" content="#f6f5fb" media="(prefers-color-scheme: light)">
+  <meta name="theme-color" content="#0e0f16" media="(prefers-color-scheme: dark)">
+
+  <!-- JSON-LD Structured Data (cookieless, privacy-compliant) -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "Organization",
+        "@id": "https://yourdomain.example/#organization",
+        "name": "PRISMAFUTURE",
+        "url": "https://yourdomain.example/",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://yourdomain.example/#logo",
+          "url": "https://yourdomain.example/gp-logo.png",
+          "width": 512,
+          "height": 512,
+          "caption": "PRISMAFUTURE logo"
+        },
+        "contactPoint": {
+          "@type": "ContactPoint",
+          "contactType": "Customer Service",
+          "email": "hello@yourdomain.example"
+        }
+      },
+      {
+        "@type": "WebSite",
+        "@id": "https://yourdomain.example/#website",
+        "url": "https://yourdomain.example/",
+        "name": "PRISMAFUTURE",
+        "description": "Artwork for creative projects — cover art, promotional graphics, and visual identity.",
+        "publisher": {
+          "@id": "https://yourdomain.example/#organization"
+        }
+      },
+      {
+        "@type": "Organization",
+        "@id": "https://yourdomain.example/#sxjmusic",
+        "name": "SXJMusic",
+        "url": "https://yourdomain.example/sxjmusic"
+      },
+      {
+        "@type": "Person",
+        "@id": "https://yourdomain.example/#gon-pulvo",
+        "name": "Gon Pulvo",
+        "jobTitle": "Designer, Musician",
+        "url": "https://epk.gonpulvo.com",
+        "worksFor": {
+          "@id": "https://yourdomain.example/#sxjmusic"
+        },
+        "sameAs": [
+          "https://instagram.com/yourhandle",
+          "https://twitter.com/yourhandle",
+          "https://facebook.com/yourhandle"
+        ]
+      }
+    ]
+  }
+  </script>
+
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
 
-  <!-- ===========================
-       HEADER
-  =========================== -->
-  <header>
+  <!-- HEADER -->
+  <header class="header">
     <div class="logo">LOGO</div>
-    <div class="tagline">tagline.</div>
-    <div class="socials">SOCIALS</div>
-    <!-- Theme toggle -->
-    <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode" class="theme-toggle">
-      <span id="theme-toggle-icon">🌙</span>
+
+    <button class="ghost-btn ghost-btn--header">Start Your Project</button>
+
+    <nav class="socials">
+      <a href="#" aria-label="Instagram">IG</a>
+      <a href="#" aria-label="Twitter">TW</a>
+      <a href="#" aria-label="TikTok">TT</a>
+      <a href="#" aria-label="YouTube">YT</a>
+    </nav>
+
+    <button id="theme-toggle" class="theme-toggle">
+      <span id="theme-icon">🌙</span>
     </button>
   </header>
 
-  <!-- ===========================
-       PRICING (top on mobile)
-  =========================== -->
-  <main class="main-grid">
 
-    <!-- ===========================
-         ASK AWAY (moved to top)
-    =========================== -->
-    <section class="askaway">
-      <h2>ASK AWAY</h2>
+  <!-- MAIN CONTENT WRAPPER -->
+  <main class="canvas">
+  <button class="ghost-btn ghost-btn--mobile">Start Your Project</button>
+    <h1 class="section-heading">ARTWORK FOR CREATIVE PROJECTS</h1>
+    
+  <p class="intro-text sr-only">Cover artwork and visual identity design for musicians, producers, and creative projects. Minimal, bold, crafted for artists who want their work to stand out.</p>
 
-      <form id="askaway-form">
-        <label for="askaway-message" class="sr-only">Message</label>
-        <textarea id="askaway-message" name="message" placeholder="lightly tell us about your artistic vision/brand...\nwe’ll follow up with you."></textarea>
-
-        <div class="email-row">
-          <label for="askaway-email">Email:</label>
-          <input id="askaway-email" name="email" type="email" placeholder="example@example.com">
-        </div>
-
-        <div class="form-actions">
-          <button type="submit" id="askaway-submit">Submit</button>
-        </div>
-      </form>
-    </section>
-
-    <!-- ===========================
-         PRICING
-    =========================== -->
-    <section class="pricing">
-      <h2>PRICING</h2>
-
-      <div class="pricing-signpost">I want to learn more about art for my:</div>
-
-      <div class="pricing-option">Singles — $50</div>
-      <div class="pricing-option">Albums — $100</div>
-      <div class="pricing-option">Promotional Video — $200</div>
-    </section>
-
-    <!-- ===========================
-      PRODUCTS + ABOUT
-    =========================== -->
-
-    <section class="products">
-      <h2>PRODUCTS</h2>
-      <p>Lorem blah blah lorem blah lorem blah blah lorem blah.</p>
-      <p>lorem blah blah lorem blah.</p>
-      <p>Blah.</p>
-    </section>
-
-    <section class="about">
-      <h2>ABOUT</h2>
-      <p>250 char max<br>blurb about you</p>
-    </section>
-
-    <!-- ===========================
-         PRODUCT CAROUSEL (covers)
-         moved below all text components
-    =========================== -->
-    <section class="product-carousel">
-      <!-- single title above all cover tiles -->
-      <div class="carousel-title">ARTWORK FOR CREATIVE PROJECTS</div>
-
-      <div class="carousel-arrow carousel-left">&#x276E;</div>
-
+    <!-- CAROUSEL / GRID -->
+    <section class="carousel">
       <div class="carousel-track">
+
         <div class="carousel-item">
-          <div class="cover-body">COVER WITH ARTIST DETAILS</div>
+          <!-- Replace with: <img src="cover-1-800.webp" srcset="cover-1-400.webp 400w, cover-1-800.webp 800w" sizes="(max-width: 900px) 85vw, 25vw" width="800" height="800" alt="Minimalist cover artwork 1 by PRISMAFUTURE"> -->
+          <div class="cover" role="img" aria-label="Cover artwork 1"><span>1</span></div>
         </div>
+
         <div class="carousel-item">
-          <div class="cover-body">COVER WITH ARTIST DETAILS</div>
+          <!-- Replace with: <img src="cover-2-800.webp" srcset="cover-2-400.webp 400w, cover-2-800.webp 800w" sizes="(max-width: 900px) 85vw, 25vw" width="800" height="800" alt="Minimalist cover artwork 2 by PRISMAFUTURE"> -->
+          <div class="cover" role="img" aria-label="Cover artwork 2"><span>2</span></div>
         </div>
+
         <div class="carousel-item">
-          <div class="cover-body">COVER WITH ARTIST DETAILS</div>
+          <!-- Replace with: <img src="cover-3-800.webp" srcset="cover-3-400.webp 400w, cover-3-800.webp 800w" sizes="(max-width: 900px) 85vw, 25vw" width="800" height="800" alt="Minimalist cover artwork 3 by PRISMAFUTURE"> -->
+          <div class="cover" role="img" aria-label="Cover artwork 3"><span>3</span></div>
         </div>
+
         <div class="carousel-item">
-          <div class="cover-body">COVER WITH ARTIST DETAILS</div>
+          <!-- Replace with: <img src="cover-4-800.webp" srcset="cover-4-400.webp 400w, cover-4-800.webp 800w" sizes="(max-width: 900px) 85vw, 25vw" width="800" height="800" alt="Minimalist cover artwork 4 by PRISMAFUTURE"> -->
+          <div class="cover" role="img" aria-label="Cover artwork 4"><span>4</span></div>
         </div>
+
       </div>
 
-      <div class="carousel-arrow carousel-right">&#x276F;</div>
+      <div class="carousel-tabs"></div>
     </section>
-
   </main>
-  <footer class="site-footer">
-    <div class="site-footer-inner">© <span id="current-year"></span> All rights reserved — site curated by gon pulvo</div>
+
+
+  <footer class="footer">
+
+    <a href="https://epk.gonpulvo.com"><span class="designer footer text"></span><img class="sitedesignlogo" src="gp-logo.png" alt="site curated by gon pulvo (logo)" srcset=""></a>
+    © <span id="year"></span> All rights reserved — PRISMAFUTURE
   </footer>
 
   <script src="script.js"></script>
   <script src="carousel.js"></script>
+
+  <!-- Cloudflare Web Analytics (cookieless) - enable by replacing YOUR_TOKEN and uncommenting the script below -->
+  <!--
+  <script defer src="https://static.cloudflareinsights.com/beacon.min.js" data-cf-beacon='{"token": "YOUR_TOKEN_HERE"}'></script>
+  -->
+
 </body>
 </html>

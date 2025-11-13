@@ -1,0 +1,20 @@
+/* HUMAN-MADE */
+
+/* Creator */
+Artwork Artist: PRISMAFUTURE
+Site Designer: gon pulvo
+Site curators: SXJMusic + PrismaFuture Studio
+Business Location: British Columbia, Canada
+
+/* Design */
+Aesthetic direction: Periwinkle Pearl Minimalism + DarkMode
+Typography: Inter + Playfair
+UX principle: High silence, high intention
+
+/* Build */
+Stack: HTML, CSS, lightweight JS
+Hosting:Github Pages/Clodflare
+Security: Strict TLS, CSP, zero-cookie analytics
+
+/* Notes */
+Made for artists. Made by an artist.

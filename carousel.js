@@ -2,56 +2,76 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const track = document.querySelector(".carousel-track");
   const items = document.querySelectorAll(".carousel-item");
-  const btnLeft = document.querySelector(".carousel-left");
-  const btnRight = document.querySelector(".carousel-right");
+  const tabs = document.querySelector(".carousel-tabs");
 
   let index = 0;
-  let total = items.length;
+  const total = items.length;
+  const mobileBreakpoint = 900;
 
-  function updateCarousel() {
-    if (window.innerWidth >= 769) {
+  // Build dots
+  function initTabs() {
+    tabs.innerHTML = "";
+    for (let i = 0; i < total; i++) {
+      const dot = document.createElement("button");
+      dot.className = "carousel-dot";
+      dot.dataset.index = i;
+
+      dot.addEventListener("click", () => {
+        index = i;
+        update();
+      });
+
+      tabs.appendChild(dot);
+    }
+  }
+
+  function update() {
+    if (window.innerWidth > mobileBreakpoint) {
       track.style.transform = "none";
       return;
     }
-    const width = items[0].clientWidth;
-    track.style.transform = `translateX(-${index * width}px)`;
+
+    // Mobile: calculate offset based on item width + margins
+    const item = items[0];
+    const computedStyle = window.getComputedStyle(item);
+    const itemWidth = item.offsetWidth;
+    const marginLeft = parseInt(computedStyle.marginLeft) || 0;
+    const marginRight = parseInt(computedStyle.marginRight) || 0;
+    const slideWidth = itemWidth + marginLeft + marginRight;
+    
+    track.style.transform = `translateX(-${index * slideWidth}px)`;
+
+    [...tabs.children].forEach((dot, i) =>
+      dot.classList.toggle("active", i === index)
+    );
   }
 
-  // Arrow controls
-  btnRight.addEventListener("click", () => {
-    index = (index + 1) % total;
-    updateCarousel();
-  });
-
-  btnLeft.addEventListener("click", () => {
-    index = (index - 1 + total) % total;
-    updateCarousel();
-  });
-
-  // Touch controls
+  // Swipe handling
   let startX = 0;
+  let dragging = false;
 
   track.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
+    dragging = true;
   });
 
   track.addEventListener("touchend", e => {
-    let endX = e.changedTouches[0].clientX;
-    let delta = endX - startX;
+    if (!dragging) return;
+    dragging = false;
 
-    if (Math.abs(delta) < 50) return; // ignore tiny swipes
+    const endX = e.changedTouches[0].clientX;
+    const delta = endX - startX;
 
-    if (delta < 0) {
-      index = (index + 1) % total;
-    } else {
-      index = (index - 1 + total) % total;
-    }
+    if (Math.abs(delta) < 40) return;
 
-    updateCarousel();
+    if (delta < 0) index = (index + 1) % total;
+    else index = (index - 1 + total) % total;
+
+    update();
   });
 
-  // Recalc on resize
-  window.addEventListener("resize", updateCarousel);
+  window.addEventListener("resize", update);
 
-  updateCarousel();
+  initTabs();
+  update();
 });

@@ -11,3 +11,10 @@ Thumbs.db
 
 #agreement
 agreement.md
+agreement*
+
+## Markdowns
+*.md
+
+## Mockups
+/mockups/

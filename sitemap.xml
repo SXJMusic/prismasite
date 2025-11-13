@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  
+  <!-- Root / homepage -->
+  <url>
+    <loc>https://prismafuture.com/</loc>
+    <lastmod>2025-11-13</lastmod>
+    <changefreq>Yearly</changefreq>
+    <priority>1.0</priority>
+  </url>
+
+  <!-- Add additional pages here as your site grows:
+  <url>
+    <loc>https://yourdomain.example/about</loc>
+    <lastmod>2025-11-13</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  -->
+
+</urlset>

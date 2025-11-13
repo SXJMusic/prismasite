@@ -1,0 +1,11 @@
+# robots.txt for PRISMAFUTURE
+# Allow all bots to index public content
+
+User-agent: *
+Allow: /
+
+# Disallow private or admin directories (if any)
+# Disallow: /admin/
+
+# Sitemap location (replace with your production domain)
+Sitemap: https://yourdomain.example/sitemap.xml

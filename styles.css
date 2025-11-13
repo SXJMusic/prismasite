@@ -21,6 +21,11 @@
   --number: rgba(48,48,71,0.06);
 
   --max-width: 65rem; /* 1040px */
+
+  /* Scrollbar tokens (boutique styling) */
+  --scrollbar-track: transparent;
+  --scrollbar-thumb: rgba(48,48,71,0.12);
+  --scrollbar-thumb-hover: rgba(48,48,71,0.22);
 }
 
 html[data-theme="dark"] {
@@ -42,6 +47,49 @@ html, body {
   color: var(--ink);
   min-height: 100vh;
 }
+
+/* Boutique scrollbar: slim, rounded, theme-aware */
+html {
+  scrollbar-width: thin; /* Firefox */
+  scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
+}
+
+/* WebKit browsers */
+::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--scrollbar-track);
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(0,0,0,0.14), rgba(0,0,0,0.06));
+  border-radius: 999px;
+  border: 2px solid transparent; /* creates breathing room */
+  background-clip: padding-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--scrollbar-thumb-hover);
+}
+
+/* Dark theme tweaks */
+html[data-theme="dark"] {
+  scrollbar-color: rgba(255,255,255,0.10) transparent;
+}
+
+html[data-theme="dark"] ::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, rgba(255,255,255,0.10), rgba(255,255,255,0.04));
+}
+
+/* Utility to hide the scrollbar while preserving scrolling (use sparingly) */
+.hide-scrollbar {
+  -ms-overflow-style: none; /* IE 10+ */
+  scrollbar-width: none; /* Firefox */
+}
+.hide-scrollbar::-webkit-scrollbar { display: none; }
 
 body {
   display: flex;
@@ -325,7 +373,7 @@ html[data-theme="dark"] .carousel-dot.active {
   font-size: 0.65rem;
   color: var(--ink-soft);
   text-align: right;
-  padding: .75rem 1.5rem; /* 20px 24px */
+  padding: .25rem 1rem; /* 20px 24px */
   max-width: var(--max-width);
   margin: 0 auto;
   width: 100%;

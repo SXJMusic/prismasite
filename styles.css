@@ -91,6 +91,25 @@ html[data-theme="dark"] ::-webkit-scrollbar-thumb {
 }
 .hide-scrollbar::-webkit-scrollbar { display: none; }
 
+/* When scrollbars are hidden, show a faint edge affordance so users know the page scrolls */
+.hide-scrollbar::after {
+  content: "";
+  position: fixed;
+  right: 0;
+  top: 0;
+  width: 18px;
+  height: 100vh;
+  pointer-events: none;
+  z-index: 9999;
+  background: linear-gradient(to left, rgba(48,48,71,0.06), rgba(48,48,71,0.02) 40%, transparent 70%);
+  transition: opacity 220ms ease;
+  opacity: 1;
+}
+
+html[data-theme="dark"] .hide-scrollbar::after {
+  background: linear-gradient(to left, rgba(255,255,255,0.06), rgba(255,255,255,0.02) 40%, transparent 70%);
+}
+
 body {
   display: flex;
   flex-direction: column;

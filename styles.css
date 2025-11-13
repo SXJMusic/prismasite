@@ -356,7 +356,8 @@ html[data-theme="dark"] footer div { color: var(--muted-500); }
   cursor: pointer;
   color: var(--muted-700);
   user-select: none;
-  text-shadow: 3px 3px 6px rgba(0,0,0,0.12);
+    text-shadow: 3px 3px 6px rgba(0,0,0,0.12);
+    z-index: 50; /* ensure arrows sit above carousel tiles */
 }
 
 .carousel-left { left: 10px; }
@@ -461,6 +462,11 @@ html[data-theme="dark"] footer div { color: var(--muted-500); }
     flex-direction: column;
     gap: 18px;
     margin-top: 12px;
+  }
+
+  /* Allow arrows to be visible outside tiles on mobile */
+  .product-carousel {
+    overflow: visible;
   }
 
   /* Mobile ordering: place covers after Pricing but before Products/About */

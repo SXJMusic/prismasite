@@ -1,0 +1,508 @@
+/* ==========================================
+   GLOBAL RESET + BASE
+========================================== */
+* {
+  margin: 0;
+  padding: 0;
+  /* Custom styles for Prismasite */
+
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  :root{
+    --brand-600: #2563eb; /* Tailwind blue-600 */
+    /* darker primary text for better contrast on off-white */
+    --muted-700: #0f1724;
+    /* slightly lighter muted text */
+    --muted-500: #7a8088;
+    --card-bg: #ffffff; /* cards stay white to pop */
+    --header-border: rgba(0,0,0,0.06);
+    /* off-white page background for subtle contrast */
+    --bg: #f7f7f8;
+    --container-max: 1100px;
+
+    /* shadow system (subtle, airy) */
+    --shadow-sm: 0 6px 18px rgba(2,6,23,0.04);
+    --shadow-soft: 0 10px 24px rgba(2,6,23,0.06);
+    --shadow-monitor: 0 18px 44px rgba(2,6,23,0.12);
+  }
+
+  body {
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Helvetica', 'Arial', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    background-color: var(--bg);
+    color: var(--muted-700);
+    line-height: 1.45;
+  }
+
+  /* Smooth scroll behavior */
+  html {
+    scroll-behavior: smooth;
+  }
+
+  /* Custom animations */
+  @keyframes fadeIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  main section {
+    animation: fadeIn 0.7s ease-out;
+  }
+
+  /* Headline: fluid responsive sizing */
+  h1 {
+    font-weight: 800;
+    color: var(--muted-700);
+    font-size: clamp(1.75rem, 4.5vw, 3.5rem); /* scales from mobile to desktop */
+    line-height: 1.05;
+  }
+
+  /* Paragraphs */
+  p {
+    color: var(--muted-500);
+    font-size: clamp(0.95rem, 2.4vw, 1.125rem);
+  }
+
+  /* Focus styles for accessibility */
+  a:focus,
+  button:focus,
+  input:focus,
+  textarea:focus {
+    outline: 3px solid rgba(59,130,246,0.18);
+    outline-offset: 2px;
+  }
+
+  /* Custom button hover effects - make CTA full width on small screens */
+  .cta-group a,
+  .cta-group button {
+    cursor: pointer;
+  }
+
+  /* Responsive image optimization */
+  img {
+    max-width: 100%;
+    height: auto;
+    display: block;
+  }
+
+  /* Monitor frame for desktop mockup */
+  .monitor-frame{
+    background: linear-gradient(180deg,#0f172a 0%, #0b1220 100%);
+    padding: 18px;
+    border-radius: 12px;
+    box-shadow: var(--shadow-monitor);
+    display: inline-block;
+    max-width: 100%;
+  }
+  .monitor-screen{
+    width: 100%;
+    height: auto;
+    max-height: 66vh;
+    border-radius: 8px;
+    display: block;
+  }
+
+  /* Phone frame for mobile mockup */
+  .phone-frame{
+    width: 160px;
+    height: 340px;
+    background: linear-gradient(180deg,#ffffff 0%, #f8fafc 60%);
+    border-radius: 34px;
+    padding: 10px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow: var(--shadow-soft);
+    border: 6px solid rgba(17,24,39,0.06);
+  }
+  .phone-screen{
+    width: 100%;
+    height: 100%;
+    border-radius: 18px;
+    overflow: hidden;
+    background: var(--card-bg);
+  }
+
+  /* Form inputs and buttons styling to match mockup */
+  input[type="text"],
+  input[type="email"],
+  textarea {
+    border: 1px solid var(--input-border, #e6e7ea);
+    background: var(--input-bg, #ffffff);
+    padding: 10px 12px;
+    border-radius: 6px;
+    width: 100%;
+    font-size: 0.95rem;
+    color: var(--muted-700);
+  }
+
+  textarea {
+    min-height: 110px;
+    resize: vertical;
+  }
+
+  /* CTA group layout class used in HTML (flex wrapper) */
+  .cta-group {
+    display: flex;
+    gap: 0.75rem;
+    align-items: center;
+  }
+
+  /* Pricing styles */
+  .pricing h2 {
+    font-size: 1.5rem;
+    letter-spacing: 0.5px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .pricing-signpost {
+    color: var(--muted-500);
+    margin-bottom: 12px;
+    font-weight: 600;
+  }
+
+  .pricing-option {
+    background: var(--card-bg);
+    padding: 10px 12px;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    color: var(--muted-700);
+    box-shadow: var(--shadow-sm);
+  }
+
+  /* Make CTAs stack on small screens */
+  @media (max-width: 639px) {
+    .cta-group {
+      flex-direction: column;
+      align-items: stretch;
+    }
+    .cta-group a,
+    .cta-group button {
+      width: 100%;
+      text-align: center;
+    }
+    .phone-frame {
+      width: 180px;
+      height: 380px;
+    }
+  }
+
+  /* Tighter layout on narrow screens */
+  @media (max-width: 899px) {
+    main {
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+    .monitor-frame {
+      padding: 12px;
+      box-shadow: var(--shadow-monitor);
+    }
+  }
+
+  /* Large screens - constrain monitor size */
+  @media (min-width: 1200px) {
+    .monitor-screen {
+      max-height: 760px;
+    }
+  }
+
+  /* Ensure footer text doesn't crowd */
+  footer div {
+    font-size: 0.9rem;
+  }
+
+  /* Utility spacing tweaks for main container */
+  .max-w-6xl {
+    max-width: var(--container-max) !important;
+  }
+
+  /* Small helpers for sidebar-like text in mockup */
+  .sidebar-list {
+    font-size: 0.9rem;
+    color: var(--muted-500);
+  }
+
+  gap: 10px;
+}
+
+/* ==========================================
+   DARK MODE / THEME SUPPORT
+   - Uses [data-theme="dark"] on <html> when enabled
+   - Falls back to system preference if no explicit choice
+========================================== */
+
+/* Default (light) variables already defined; add dark overrides */
+  html[data-theme="dark"] {
+  --bg: #0b1220;
+  --muted-700: #d1d5db; /* lighter text */
+  --muted-500: #9ca3af;
+  --brand-600: #60a5fa; /* softer blue */
+  --card-bg: #0f1724;
+  --header-border: rgba(255,255,255,0.03);
+  --input-bg: #0f1724;
+  --input-border: #1f2937;
+  /* darker shadows for dark theme (still subtle) */
+  --shadow-sm: 0 6px 18px rgba(2,6,23,0.12);
+  --shadow-soft: 0 12px 30px rgba(2,6,23,0.18);
+  --shadow-monitor: 0 24px 60px rgba(2,6,23,0.35);
+}
+
+/* Removed prefers-color-scheme auto-dark fallback so default is always light
+   Users can still enable dark via the toggle which sets [data-theme="dark"]. */
+
+/* apply background & text colors */
+body {
+  background-color: var(--bg);
+  color: var(--muted-700);
+}
+
+header {
+  color: var(--muted-700);
+}
+
+/* Inputs in dark theme */
+html[data-theme="dark"] input[type="text"],
+html[data-theme="dark"] input[type="email"],
+html[data-theme="dark"] textarea {
+  background: var(--input-bg, #0f1724); /* slightly lighter than page bg */
+  border: 1px solid var(--input-border, #1f2937);
+  color: var(--muted-700);
+}
+
+/* Monitor / phone frames in dark */
+html[data-theme="dark"] .monitor-frame{
+  background: linear-gradient(180deg,#071025 0%, #02111b 100%);
+  box-shadow: var(--shadow-monitor);
+}
+
+html[data-theme="dark"] .phone-frame{
+  background: linear-gradient(180deg,#0b1220 0%, #09121a 60%);
+  border: 6px solid rgba(255,255,255,0.03);
+  box-shadow: var(--shadow-soft);
+}
+
+/* Links and buttons */
+html[data-theme="dark"] a {
+  color: var(--brand-600);
+}
+
+/* Buttons primary */
+html[data-theme="dark"] .cta-group a, html[data-theme="dark"] .cta-group button {
+  color: var(--bg);
+}
+
+/* Small toggle styling */
+.theme-toggle {
+  background: transparent;
+  border: none;
+  font-size: 1.05rem;
+  cursor: pointer;
+  margin-left: 8px;
+}
+
+/* Ensure footer remains readable */
+html[data-theme="dark"] footer div { color: var(--muted-500); }
+
+
+/* ==========================================
+   CAROUSEL BASE
+========================================== */
+.product-carousel {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  margin-top: 20px;
+  padding: 18px 0 36px 0; /* extra breathing room around covers */
+}
+
+.carousel-track {
+  display: flex;
+  transition: transform 0.4s ease;
+}
+
+.carousel-item {
+  min-width: 100%;
+  background: var(--card-bg);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 18px;
+  padding: 12px;
+  border-radius: 12px;
+  box-shadow: var(--shadow-soft);
+  /* make items square by default (desktop) */
+  aspect-ratio: 1 / 1;
+  height: auto;
+}
+
+/* Arrows */
+  .carousel-arrow {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 48px;
+  cursor: pointer;
+  color: var(--muted-700);
+  user-select: none;
+  text-shadow: 3px 3px 6px rgba(0,0,0,0.12);
+}
+
+.carousel-left { left: 10px; }
+.carousel-right { right: 10px; }
+
+/* ==========================================
+   FOOTER TWO-COLUMN
+========================================== */
+.footer-two-col {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.footer-two-col section {
+  flex: 1;
+}
+
+/* ==========================================
+   DESKTOP OVERRIDE FOR CAROUSEL
+========================================== */
+@media (min-width: 769px) {
+  .product-carousel {
+    overflow: visible;
+  }
+
+  .carousel-arrow {
+    display: none;
+  }
+
+  .carousel-track {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+    transform: none !important;
+  }
+
+  .carousel-item {
+    min-width: auto;
+  }
+}
+
+/* ==========================================
+   LAYOUT: Two-column desktop grid
+   Left column: Pricing + Ask Away (sticky)
+   Right column: Carousel and footer sections
+========================================== */
+@media (min-width: 769px) {
+  .main-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 28px;
+    align-items: start;
+    padding: 28px 28px;
+  }
+
+  /* Top row: place the four text sections across the grid */
+  .askaway { grid-column: 1 / 2; }
+  .pricing { grid-column: 2 / 3; }
+  .products { grid-column: 3 / 4; }
+  .about { grid-column: 4 / 5; }
+
+  /* Place the carousel below across all columns */
+  .product-carousel { grid-column: 1 / -1; }
+
+  /* Tweak carousel item sizing on wide screens: keep square but allow max height */
+  .carousel-item {
+    border-radius: 10px;
+    max-height: 60vh;
+    height: auto;
+  }
+
+  /* Header layout for desktop */
+  header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 24px;
+    position: sticky;
+    top: 0;
+    z-index: 30;
+    background: var(--bg);
+    border-bottom: 1px solid var(--header-border);
+  }
+
+  .logo { font-weight: 700; font-size: 1.05rem; }
+  .tagline { color: var(--muted-500); margin-left: 6px; }
+  .socials { margin-left: auto; color: var(--muted-500); }
+}
+
+/* ==========================================
+   MOBILE LAYOUT
+========================================== */
+@media (max-width: 768px) {
+
+  body {
+    padding: 0 12px;
+  }
+
+  .main-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+    margin-top: 12px;
+  }
+
+  /* Mobile ordering: place covers after Pricing but before Products/About */
+  .askaway { order: 1; }
+  .pricing { order: 2; }
+  .product-carousel { order: 3; }
+  .products { order: 4; }
+  .about { order: 5; }
+
+  .askaway h2 {
+    font-size: 34px;
+  }
+
+  .pricing h2 {
+    font-size: 34px;
+  }
+
+  .carousel-item {
+    /* Mobile: larger square tiles */
+    height: 425px;
+    aspect-ratio: auto;
+  }
+
+  /* Single title that sits above the carousel (applies to all sizes) */
+  .carousel-title {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 0.6px;
+    color: var(--muted-500);
+    margin: 0 0 12px 0;
+    text-align: center;
+  }
+
+  .carousel-item .cover-body {
+    text-align: center;
+    font-weight: 700;
+    color: var(--muted-700);
+  }
+
+  /* Footer becomes row */
+  .footer-two-col {
+    flex-direction: row;
+    margin-bottom: 50px;
+  }
+}

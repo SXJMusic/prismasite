@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Prismasite</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <!-- ===========================
+       HEADER
+  =========================== -->
+  <header>
+    <div class="logo">LOGO</div>
+    <div class="tagline">tagline.</div>
+    <div class="socials">SOCIALS</div>
+    <!-- Theme toggle -->
+    <button id="theme-toggle" aria-label="Toggle dark mode" title="Toggle dark mode" class="theme-toggle">
+      <span id="theme-toggle-icon">🌙</span>
+    </button>
+  </header>
+
+  <!-- ===========================
+       PRICING (top on mobile)
+  =========================== -->
+  <main class="main-grid">
+
+    <!-- ===========================
+         ASK AWAY (moved to top)
+    =========================== -->
+    <section class="askaway">
+      <h2>ASK AWAY</h2>
+
+      <form id="askaway-form">
+        <label for="askaway-message" class="sr-only">Message</label>
+        <textarea id="askaway-message" name="message" placeholder="lightly tell us about your artistic vision/brand...\nwe’ll follow up with you."></textarea>
+
+        <div class="email-row">
+          <label for="askaway-email">Email:</label>
+          <input id="askaway-email" name="email" type="email" placeholder="example@example.com">
+        </div>
+
+        <div class="form-actions">
+          <button type="submit" id="askaway-submit">Submit</button>
+        </div>
+      </form>
+    </section>
+
+    <!-- ===========================
+         PRICING
+    =========================== -->
+    <section class="pricing">
+      <h2>PRICING</h2>
+
+      <div class="pricing-signpost">I want to learn more about art for my:</div>
+
+      <div class="pricing-option">Singles — $50</div>
+      <div class="pricing-option">Albums — $100</div>
+      <div class="pricing-option">Promotional Video — $200</div>
+    </section>
+
+    <!-- ===========================
+      PRODUCTS + ABOUT
+    =========================== -->
+
+    <section class="products">
+      <h2>PRODUCTS</h2>
+      <p>Lorem blah blah lorem blah lorem blah blah lorem blah.</p>
+      <p>lorem blah blah lorem blah.</p>
+      <p>Blah.</p>
+    </section>
+
+    <section class="about">
+      <h2>ABOUT</h2>
+      <p>250 char max<br>blurb about you</p>
+    </section>
+
+    <!-- ===========================
+         PRODUCT CAROUSEL (covers)
+         moved below all text components
+    =========================== -->
+    <section class="product-carousel">
+      <!-- single title above all cover tiles -->
+      <div class="carousel-title">ARTWORK FOR CREATIVE PROJECTS</div>
+
+      <div class="carousel-arrow carousel-left">&#x276E;</div>
+
+      <div class="carousel-track">
+        <div class="carousel-item">
+          <div class="cover-body">COVER WITH ARTIST DETAILS</div>
+        </div>
+        <div class="carousel-item">
+          <div class="cover-body">COVER WITH ARTIST DETAILS</div>
+        </div>
+        <div class="carousel-item">
+          <div class="cover-body">COVER WITH ARTIST DETAILS</div>
+        </div>
+        <div class="carousel-item">
+          <div class="cover-body">COVER WITH ARTIST DETAILS</div>
+        </div>
+      </div>
+
+      <div class="carousel-arrow carousel-right">&#x276F;</div>
+    </section>
+
+  </main>
+  <footer class="site-footer">
+    <div class="site-footer-inner">© <span id="current-year"></span> All rights reserved — site curated by gon pulvo</div>
+  </footer>
+
+  <script src="script.js"></script>
+  <script src="carousel.js"></script>
+</body>
+</html>

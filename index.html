@@ -90,8 +90,8 @@
 </head>
 <body class="hide-scrollbar">
 
-  <!-- HEADER -->
-  <header class="header">
+  <!-- HEADER (hidden for mockup match) -->
+  <header class="header" style="display: none;">
     <div class="logo">LOGO</div>
 
     <button class="ghost-btn ghost-btn--header">Start Your Project</button>
@@ -111,47 +111,51 @@
 
   <!-- MAIN CONTENT WRAPPER -->
   <main class="canvas">
-  <button class="ghost-btn ghost-btn--mobile">Start Your Project</button>
-    <h1 class="section-heading">ARTWORK FOR CREATIVE PROJECTS</h1>
+    <h1 class="brand-title">PRISMAFUTURE</h1>
+    <p class="brand-subtitle">ULTRA VIBRANT SOLUTIONS</p>
     
-  <p class="intro-text sr-only">Cover artwork and visual identity design for musicians, producers, and creative projects. Minimal, bold, crafted for artists who want their work to stand out.</p>
+    <p class="intro-text sr-only">Cover artwork and visual identity design for musicians, producers, and creative projects. Minimal, bold, crafted for artists who want their work to stand out.</p>
 
-    <!-- CAROUSEL / GRID -->
+    <!-- Single rotating image -->
     <section class="carousel">
-      <div class="carousel-track">
-
-  <div class="carousel-item" data-caption="Cover 1 — Minimalist cover artwork by PRISMAFUTURE">
-          <!-- Replace with: <img src="cover-1-800.webp" srcset="cover-1-400.webp 400w, cover-1-800.webp 800w" sizes="(max-width: 900px) 85vw, 25vw" width="800" height="800" alt="Minimalist cover artwork 1 by PRISMAFUTURE"> -->
+      <div class="carousel-container">
+        <div class="carousel-item active" data-caption="Cover 1 — Minimalist cover artwork by PRISMAFUTURE">
           <div class="cover" role="img" aria-label="Cover artwork 1"><span>1</span></div>
         </div>
-
-  <div class="carousel-item" data-caption="Cover 2 — Minimalist cover artwork by PRISMAFUTURE">
-          <!-- Replace with: <img src="cover-2-800.webp" srcset="cover-2-400.webp 400w, cover-2-800.webp 800w" sizes="(max-width: 900px) 85vw, 25vw" width="800" height="800" alt="Minimalist cover artwork 2 by PRISMAFUTURE"> -->
+        <div class="carousel-item" data-caption="Cover 2 — Bold design for creative projects">
           <div class="cover" role="img" aria-label="Cover artwork 2"><span>2</span></div>
         </div>
-
-  <div class="carousel-item" data-caption="Cover 3 — Minimalist cover artwork by PRISMAFUTURE">
-          <!-- Replace with: <img src="cover-3-800.webp" srcset="cover-3-400.webp 400w, cover-3-800.webp 800w" sizes="(max-width: 900px) 85vw, 25vw" width="800" height="800" alt="Minimalist cover artwork 3 by PRISMAFUTURE"> -->
+        <div class="carousel-item" data-caption="Cover 3 — Ultra vibrant visual identity">
           <div class="cover" role="img" aria-label="Cover artwork 3"><span>3</span></div>
         </div>
-
-  <div class="carousel-item" data-caption="Cover 4 — Minimalist cover artwork by PRISMAFUTURE">
-          <!-- Replace with: <img src="cover-4-800.webp" srcset="cover-4-400.webp 400w, cover-4-800.webp 800w" sizes="(max-width: 900px) 85vw, 25vw" width="800" height="800" alt="Minimalist cover artwork 4 by PRISMAFUTURE"> -->
+        <div class="carousel-item" data-caption="Cover 4 — Premium artwork for musicians">
           <div class="cover" role="img" aria-label="Cover artwork 4"><span>4</span></div>
         </div>
-
       </div>
-
       <div class="carousel-caption" aria-hidden="true" aria-live="polite"></div>
-      <div class="carousel-tabs"></div>
     </section>
+
+    <!-- Bottom links -->
+    <nav class="bottom-links">
+      <a href="#start">Start</a>
+      <a href="#about">About</a>
+      <a href="#follow">Follow</a>
+    </nav>
   </main>
 
 
   <footer class="footer">
-
-    <a href="https://epk.gonpulvo.com"><span class="designer footer text"></span><img class="sitedesignlogo" src="gp-logo.png" alt="site curated by gon pulvo (logo)" srcset=""></a>
-    © <span id="year"></span> All rights reserved — PRISMAFUTURE
+    <div class="footer-left">
+      <a href="https://epk.gonpulvo.com"><span class="designer footer text"></span><img class="sitedesignlogo" src="gp-logo.png" alt="site curated by gon pulvo (logo)" srcset=""></a>
+    </div>
+    <div class="footer-center">
+      © <span id="year"></span> All rights reserved — PRISMAFUTURE
+    </div>
+    <div class="footer-right">
+      <button id="theme-toggle" class="theme-toggle" aria-label="Toggle dark mode">
+        <span id="theme-icon">🌙</span>
+      </button>
+    </div>
   </footer>
 
   <script src="script.js"></script>

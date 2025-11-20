@@ -5,10 +5,15 @@ document.addEventListener("DOMContentLoaded", () => {
   const toggle = document.getElementById("theme-toggle");
   const icon = document.getElementById("theme-icon");
 
+  // Default to light mode
   const saved = localStorage.getItem("theme");
   if (saved === "dark") {
     root.setAttribute("data-theme", "dark");
     icon.textContent = "☀";
+  } else {
+    // Explicitly set light mode as default
+    root.removeAttribute("data-theme");
+    icon.textContent = "🌙";
   }
 
   toggle.addEventListener("click", () => {

@@ -7,6 +7,13 @@
   box-sizing: border-box;
 }
 
+.carousel-track {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 0;
+  justify-content: center;
+  align-items: center;
+}
 /* ROOT THEME */
 :root {
   --ff-sans: "Inter", sans-serif;
@@ -16,6 +23,16 @@
   --bg-gradient: radial-gradient(circle at 10% 0%, #faf8ff 0%, #f5f4fa 50%, #f2f1f9 100%);
   --canvas-bg: #ffffff;
   --ink: #303047;
+.carousel {
+  width: 100%;
+  margin: 0 auto;
+  max-width: 48rem; /* 768px-ish */
+  padding: 2.5rem 1rem; /* give breathing room for centered art */
+  box-sizing: border-box;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+}
   --ink-soft: #7c7b99;
   --border: #dcdcef;
   --number: rgba(48,48,71,0.06);
@@ -26,6 +43,17 @@
   --scrollbar-track: transparent;
   --scrollbar-thumb: rgba(48,48,71,0.12);
   --scrollbar-thumb-hover: rgba(48,48,71,0.22);
+}
+.carousel-item {
+  aspect-ratio: 1/1;
+  border: 1px solid var(--border);
+  border-radius: 0.75rem; /* 12px */
+  overflow: visible;
+  background: #fff;
+  width: 44vw; /* large centered square */
+  max-width: 520px;
+  min-width: 220px;
+  height: auto;
 }
 
 html[data-theme="dark"] {
@@ -131,6 +159,17 @@ body {
 
 html[data-theme="dark"] .header {
   background: rgba(10,10,14,0.65);
+}
+.carousel-caption {
+  display: none;
+  margin-top: 0.75rem;
+  font-size: 0.85rem;
+  color: var(--ink-soft);
+  text-align: center;
+}
+
+.carousel-caption.visible {
+  display: block;
 }
 
 .logo {

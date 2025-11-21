@@ -27,7 +27,8 @@ document.addEventListener("DOMContentLoaded", async () => {
   container.innerHTML = "";
   coverImages.forEach((img, i) => {
     const item = document.createElement("div");
-    item.className = "carousel-item" + (i === 0 ? " active" : "");
+    // Do not mark the first item active here — we choose a random start index below
+    item.className = "carousel-item";
     item.dataset.caption = img.caption;
     
     const cover = document.createElement("div");
@@ -46,13 +47,15 @@ document.addEventListener("DOMContentLoaded", async () => {
   });
 
   const items = document.querySelectorAll(".carousel-item");
-  let index = 0;
   const total = items.length;
-  
+
   if (total === 0) {
     console.error('No carousel items generated');
     return;
   }
+
+  // Choose a random starting slide so the site feels fresh on each load
+  let index = Math.floor(Math.random() * total);
   // Autoplay speed configuration
   // Increase or decrease AUTO_INTERVAL_MS to control how quickly slides advance.
   // Keep SLIDE_FADE_MS lower than interval for a crisp, fast feel.
@@ -111,6 +114,8 @@ document.addEventListener("DOMContentLoaded", async () => {
     isPlaying = false;
   }
 
+  // Ensure UI reflects the chosen starting slide, then start autoplay
+  update();
   // Start autoplay
   play();
 

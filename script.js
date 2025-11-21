@@ -28,4 +28,24 @@ document.addEventListener("DOMContentLoaded", () => {
       icon.textContent = "☀";
     }
   });
+
+  // ABOUT PANEL TOGGLE
+  const aboutLink = document.getElementById("about-link");
+  const aboutPanel = document.getElementById("about-panel");
+  if (aboutLink && aboutPanel) {
+    aboutLink.addEventListener("click", (e) => {
+      e.preventDefault();
+      const visible = aboutPanel.classList.toggle("visible");
+      aboutPanel.setAttribute("aria-hidden", visible ? "false" : "true");
+      aboutLink.setAttribute("aria-expanded", visible ? "true" : "false");
+    });
+    // Optional close on outside click (desktop)
+    document.addEventListener("click", (e) => {
+      if (!aboutPanel.classList.contains("visible")) return;
+      if (e.target === aboutPanel || e.target === aboutLink || aboutPanel.contains(e.target)) return;
+      aboutPanel.classList.remove("visible");
+      aboutPanel.setAttribute("aria-hidden", "true");
+      aboutLink.setAttribute("aria-expanded", "false");
+    });
+  }
 });

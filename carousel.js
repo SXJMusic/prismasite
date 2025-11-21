@@ -1,50 +1,74 @@
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", async () => {
 
-  const track = document.querySelector(".carousel-track");
+  const container = document.querySelector(".carousel-container");
+  const captionEl = document.querySelector(".carousel-caption");
+  
+  // Load cover images from manifest file
+  // TO ADD MORE IMAGES: 
+  // 1. Add image to covers/ folder
+  // 2. Add entry to covers-manifest.json with filename and caption
+  let coverImages = [];
+  
+  try {
+    const response = await fetch('covers-manifest.json');
+    const manifest = await response.json();
+    coverImages = manifest.map(item => ({
+      src: `covers/${item.filename}`,
+      caption: item.caption
+    }));
+  } catch (error) {
+    console.error('Failed to load covers manifest:', error);
+    // Fallback: show error message
+    container.innerHTML = '<p style="color: var(--ink-soft); text-align: center;">Unable to load cover artwork</p>';
+    return;
+  }
+
+  // Generate carousel items dynamically
+  container.innerHTML = "";
+  coverImages.forEach((img, i) => {
+    const item = document.createElement("div");
+    item.className = "carousel-item" + (i === 0 ? " active" : "");
+    item.dataset.caption = img.caption;
+    
+    const cover = document.createElement("div");
+    cover.className = "cover";
+    cover.setAttribute('role', 'img');
+    cover.setAttribute('aria-label', `${img.caption} cover art`);
+    
+    const imgEl = document.createElement("img");
+    imgEl.src = img.src;
+    imgEl.alt = img.caption;
+    imgEl.loading = "lazy";
+    
+    cover.appendChild(imgEl);
+    item.appendChild(cover);
+    container.appendChild(item);
+  });
+
   const items = document.querySelectorAll(".carousel-item");
-  const tabs = document.querySelector(".carousel-tabs");
-
   let index = 0;
   const total = items.length;
-  const mobileBreakpoint = 900;
-  const autoInterval = 3000; // ms between slides
+  
+  if (total === 0) {
+    console.error('No carousel items generated');
+    return;
+  }
+  // Autoplay speed configuration
+  // Increase or decrease AUTO_INTERVAL_MS to control how quickly slides advance.
+  // Keep SLIDE_FADE_MS lower than interval for a crisp, fast feel.
+  const AUTO_INTERVAL_MS = 900; // was 1200ms – slightly faster now
+  const SLIDE_FADE_MS = 250; // matches CSS opacity transition (styles.css)
+  const autoInterval = AUTO_INTERVAL_MS; // legacy variable for existing code paths
   let isPlaying = true;
   let autoTimer = null;
   let pauseByHover = false;
   let pauseByInteraction = false; // user tap/click
 
-  // Build dots
-  function initTabs() {
-    tabs.innerHTML = "";
-    for (let i = 0; i < total; i++) {
-      const dot = document.createElement("button");
-      dot.className = "carousel-dot";
-      dot.dataset.index = i;
-
-      dot.addEventListener("click", () => {
-        index = i;
-        update();
-      });
-
-      tabs.appendChild(dot);
-    }
-  }
-
   function update() {
-    // Calculate translation for single centered slide (works for desktop and mobile)
-    const item = items[0];
-    const computedStyle = window.getComputedStyle(item);
-    const itemWidth = item.offsetWidth;
-    const marginLeft = parseInt(computedStyle.marginLeft) || 0;
-    const marginRight = parseInt(computedStyle.marginRight) || 0;
-    const slideWidth = itemWidth + marginLeft + marginRight;
-    track.style.transform = `translateX(-${index * slideWidth}px)`;
-
-  // (no separate mobile calc — same transform logic applies to all viewports)
-
-    [...tabs.children].forEach((dot, i) =>
-      dot.classList.toggle("active", i === index)
-    );
+    // Remove active from all items, then add to current
+    items.forEach((item, i) => {
+      item.classList.toggle("active", i === index);
+    });
 
     // Caption: hide if playing, show if paused
     if (isPlaying) {
@@ -55,19 +79,19 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function showCaption() {
-    if (!caption) return;
+    if (!captionEl) return;
     const text = items[index].dataset.caption || "";
     if (!text) return;
-    caption.textContent = text;
-    caption.classList.add("visible");
-    caption.setAttribute("aria-hidden", "false");
+    captionEl.textContent = text;
+    captionEl.classList.add("visible");
+    captionEl.setAttribute("aria-hidden", "false");
   }
 
   function hideCaption() {
-    if (!caption) return;
-    caption.textContent = "";
-    caption.classList.remove("visible");
-    caption.setAttribute("aria-hidden", "true");
+    if (!captionEl) return;
+    captionEl.textContent = "";
+    captionEl.classList.remove("visible");
+    captionEl.setAttribute("aria-hidden", "true");
   }
 
   function play() {
@@ -75,7 +99,7 @@ document.addEventListener("DOMContentLoaded", () => {
     autoTimer = setInterval(() => {
       index = (index + 1) % total;
       update();
-    }, autoInterval);
+    }, AUTO_INTERVAL_MS);
     isPlaying = true;
     pauseByInteraction = false;
     hideCaption();
@@ -87,9 +111,6 @@ document.addEventListener("DOMContentLoaded", () => {
     isPlaying = false;
   }
 
-  // Build caption node reference
-  const caption = document.querySelector(".carousel-caption");
-
   // Start autoplay
   play();
 
@@ -98,20 +119,20 @@ document.addEventListener("DOMContentLoaded", () => {
   let dragging = false;
   let isSwiping = false;
 
-  track.addEventListener("touchstart", e => {
+  container.addEventListener("touchstart", e => {
     startX = e.touches[0].clientX;
     dragging = true;
     isSwiping = false;
   });
 
-  track.addEventListener("touchmove", e => {
+  container.addEventListener("touchmove", e => {
     if (!dragging) return;
     const moveX = e.touches[0].clientX;
     const deltaX = moveX - startX;
     if (Math.abs(deltaX) > 12) isSwiping = true; // threshold for swipe
   });
 
-  track.addEventListener("touchend", e => {
+  container.addEventListener("touchend", e => {
     if (!dragging) return;
     dragging = false;
 
@@ -139,20 +160,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
   window.addEventListener("resize", update);
 
-  initTabs();
   update();
 
-  // Desktop hover to pause & show caption
-  track.addEventListener("mouseenter", () => {
-    if (isPlaying) {
-      pause();
-      pauseByHover = true;
-      showCaption();
-    }
+  // Desktop hover to pause & show caption on the container
+  container.addEventListener("mouseenter", () => {
+    pause();
+    pauseByHover = true;
+    showCaption();
   });
 
-  track.addEventListener("mouseleave", () => {
-    if (pauseByHover) {
+  container.addEventListener("mouseleave", () => {
+    if (pauseByHover && !pauseByInteraction) {
       play();
       pauseByHover = false;
     }
@@ -171,8 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
         showCaption();
       } else {
         // resume
-        index = i;
-        update();
+        pauseByInteraction = false;
         play();
       }
     });

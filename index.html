@@ -34,52 +34,44 @@
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://yourdomain.example/#organization",
+        "@id": "https://prismafuture.com",
         "name": "PRISMAFUTURE",
-        "url": "https://yourdomain.example/",
-        "logo": {
-          "@type": "ImageObject",
-          "@id": "https://yourdomain.example/#logo",
-          "url": "https://yourdomain.example/gp-logo.png",
-          "width": 512,
-          "height": 512,
-          "caption": "PRISMAFUTURE logo"
-        },
+        "url": "https://prismafuture.com",
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "Customer Service",
-          "email": "hello@yourdomain.example"
+          "email": "hello@prismafuture.com"
         }
       },
       {
         "@type": "WebSite",
-        "@id": "https://yourdomain.example/#website",
-        "url": "https://yourdomain.example/",
+        "@id": "https://prismafuture.com",
+        "url": "https://prismafuture.com",
         "name": "PRISMAFUTURE",
         "description": "Artwork for creative projects — cover art, promotional graphics, and visual identity.",
         "publisher": {
-          "@id": "https://yourdomain.example/#organization"
+          "@id": "https://prismafuture.com"
         }
       },
       {
         "@type": "Organization",
-        "@id": "https://yourdomain.example/#sxjmusic",
+        "@id": "https://sxjmusic.com",
         "name": "SXJMusic",
-        "url": "https://yourdomain.example/sxjmusic"
+        "url": "https://sxjmusic.com"
       },
       {
         "@type": "Person",
-        "@id": "https://yourdomain.example/#gon-pulvo",
-        "name": "Gon Pulvo",
+        "@id": "http://gonpulvo.com/",
+        "name": "gon pulvo",
         "jobTitle": "Designer, Musician",
         "url": "https://epk.gonpulvo.com",
         "worksFor": {
-          "@id": "https://yourdomain.example/#sxjmusic"
+          "@id": "http://gonpulvo.com"
         },
         "sameAs": [
-          "https://instagram.com/yourhandle",
-          "https://twitter.com/yourhandle",
-          "https://facebook.com/yourhandle"
+          "https://instagram.com/gonpulvo",
+          "https://twitter.com/gonpulvo",
+          "https://facebook.com/gonpulvo"
         ]
       }
     ]
@@ -93,21 +85,14 @@
   <!-- HEADER (hidden for mockup match) -->
   <header class="header" style="display: none;">
     <div class="logo">LOGO</div>
-
     <button class="ghost-btn ghost-btn--header">Start Your Project</button>
-
     <nav class="socials">
       <a href="#" aria-label="Instagram">IG</a>
       <a href="#" aria-label="Twitter">TW</a>
       <a href="#" aria-label="TikTok">TT</a>
       <a href="#" aria-label="YouTube">YT</a>
     </nav>
-
-    <button id="theme-toggle" class="theme-toggle">
-      <span id="theme-icon">🌙</span>
-    </button>
   </header>
-
 
   <!-- MAIN CONTENT WRAPPER -->
   <main class="canvas">
@@ -118,31 +103,29 @@
 
     <!-- Single rotating image -->
     <section class="carousel">
-      <div class="carousel-container">
-        <div class="carousel-item active" data-caption="Cover 1 — Minimalist cover artwork by PRISMAFUTURE">
-          <div class="cover" role="img" aria-label="Cover artwork 1"><span>1</span></div>
-        </div>
-        <div class="carousel-item" data-caption="Cover 2 — Bold design for creative projects">
-          <div class="cover" role="img" aria-label="Cover artwork 2"><span>2</span></div>
-        </div>
-        <div class="carousel-item" data-caption="Cover 3 — Ultra vibrant visual identity">
-          <div class="cover" role="img" aria-label="Cover artwork 3"><span>3</span></div>
-        </div>
-        <div class="carousel-item" data-caption="Cover 4 — Premium artwork for musicians">
-          <div class="cover" role="img" aria-label="Cover artwork 4"><span>4</span></div>
-        </div>
+      <div class="carousel-container" aria-live="off">
+        <!-- JS will inject .carousel-item elements here -->
+        <noscript>
+          <p style="font-size:0.85rem;color:var(--ink-soft);text-align:center;">Enable JavaScript to view the rotating gallery.</p>
+        </noscript>
       </div>
       <div class="carousel-caption" aria-hidden="true" aria-live="polite"></div>
-    </section>
-
-    <!-- Bottom links -->
+          <!-- Bottom links -->
     <nav class="bottom-links">
-      <a href="#start">Start</a>
-      <a href="#about">About</a>
+      <a href="#start">START</a>
+      <a href="#about" id="about-link" aria-controls="about-panel" aria-expanded="false">About</a>
       <a href="#follow">Follow</a>
     </nav>
-  </main>
+    </section>
 
+
+
+    <!-- About panel (fades in on click) -->
+    <div id="about-panel" class="about-panel" role="region" aria-label="About PRISMAFUTURE" aria-hidden="true">
+      <p>PRISMAFUTURE crafts vivid, custom cover art & visual identity for musicians and creative projects. Bold minimalism, saturated texture, and narrative mood converge so your release feels collectible the moment it appears.</p>
+      <p class="about-secondary">One-off artwork • identity suites • promotional graphics. Designed with intent, tuned for streaming platforms, print, and social reveal moments.</p>
+    </div>
+  </main>
 
   <footer class="footer">
     <div class="footer-left">

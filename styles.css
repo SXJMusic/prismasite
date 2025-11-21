@@ -20,6 +20,10 @@
   --border: #dcdcef;
   --number: rgba(48,48,71,0.06);
 
+  /* Shadows */
+  --shadow-soft: 0 6px 18px -6px rgba(48,48,71,0.18), 0 2px 6px -2px rgba(48,48,71,0.12);
+  --shadow-soft-hover: 0 10px 24px -8px rgba(48,48,71,0.22), 0 4px 10px -3px rgba(48,48,71,0.16);
+
   --scrollbar-track: transparent;
   --scrollbar-thumb: rgba(48,48,71,0.12);
   --scrollbar-thumb-hover: rgba(48,48,71,0.22);
@@ -33,19 +37,20 @@ html[data-theme="dark"] {
   --ink-soft: #9e9fbc;
   --border: #2c2d44;
   --number: rgba(200,200,255,0.08);
+  --shadow-soft: 0 6px 18px -6px rgba(0,0,0,0.55), 0 2px 6px -2px rgba(0,0,0,0.5);
+  --shadow-soft-hover: 0 10px 26px -10px rgba(0,0,0,0.7), 0 4px 12px -4px rgba(0,0,0,0.55);
 }
 
 html, body {
-  background: var(--bg);
-  background-image: var(--bg-gradient);
-  font-family: var(--ff-sans);
-  -webkit-font-smoothing: antialiased;
-  overflow-x: hidden;
-  color: var(--ink);
-  min-height: 100vh;
-}
-
-/* Boutique scrollbar */
+background: var(--bg);
+background-image: var(--bg-gradient);
+font-family: var(--ff-sans);
+-webkit-font-smoothing: antialiased;
+overflow-x: hidden;
+color: var(--ink);
+min-height: 100vh;
+transition: background-color 0.5s ease, color 0.5s ease;
+}/* Boutique scrollbar */
 html {
   scrollbar-width: thin;
   scrollbar-color: var(--scrollbar-thumb) var(--scrollbar-track);
@@ -123,6 +128,7 @@ text-align: center;
 height: 100vh;
 max-height: 100vh;
 overflow: hidden;
+transition: background-color 0.5s ease;
 }/* Brand title: PRISMAFUTURE */
 .brand-title {
   font-family: var(--ff-sans);
@@ -131,6 +137,7 @@ overflow: hidden;
   letter-spacing: 0.05em;
   color: var(--ink);
   margin-bottom: 0.35rem;
+  transition: color 0.5s ease;
 }
 
 /* Subtitle: ULTRA VIBRANT SOLUTIONS */
@@ -142,6 +149,7 @@ overflow: hidden;
   color: var(--ink);
   margin-bottom: 0;
   text-transform: uppercase;
+  transition: color 0.5s ease;
 }
 
 /* Accessible visually-hidden utility (screen-reader only) */
@@ -182,7 +190,7 @@ left: 0;
 width: 100%;
 height: 100%;
 opacity: 0;
-transition: opacity 0.25s ease;
+transition: opacity 0.25s ease; /* faster fade */
 pointer-events: none;
 }.carousel-item.active {
   opacity: 1;
@@ -190,14 +198,18 @@ pointer-events: none;
 }
 
 .carousel-item {
-  border: 1px solid var(--border);
-  border-radius: 0.75rem;
-  background: #fff;
-  cursor: pointer;
+border: 1px solid var(--border);
+border-radius: 0.85rem;
+background: linear-gradient(145deg,#ffffff,#f5f4fa);
+box-shadow: var(--shadow-soft);
+cursor: pointer;
+transition: background-color 0.5s ease, border-color 0.5s ease, box-shadow 0.35s ease;
 }
-
+.carousel-item.active {
+  box-shadow: var(--shadow-soft-hover);
+}
 html[data-theme="dark"] .carousel-item {
-  background: #171827;
+  background: linear-gradient(145deg,#171827,#141521);
 }
 
 .cover {
@@ -207,12 +219,21 @@ html[data-theme="dark"] .carousel-item {
   display: flex;
   align-items: center;
   justify-content: center;
+  overflow: hidden;
+}
+
+.cover img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
 }
 
 .cover span {
   font-family: var(--ff-serif);
   font-size: 5rem;
   color: var(--number);
+  transition: color 0.5s ease;
 }
 
 /* Caption below image (shown on pause) */
@@ -223,11 +244,28 @@ color: var(--ink-soft);
 text-align: center;
 min-height: 1.25rem;
 opacity: 0;
-transition: opacity 0.3s ease;
+transition: opacity 0.3s ease, color 0.5s ease;
 }
 
 .carousel-caption.visible {
 opacity: 1;
+}
+
+/* Ambient glow behind carousel for subtle depth */
+.carousel-container::before {
+  content: "";
+  position: absolute;
+  inset: -6%;
+  background: radial-gradient(circle at 50% 50%, rgba(255,255,255,0.55), rgba(255,255,255,0) 60%);
+  z-index: -1;
+  filter: blur(22px);
+  opacity: 0.5;
+  transition: opacity 0.6s ease;
+  pointer-events: none;
+}
+html[data-theme="dark"] .carousel-container::before {
+  background: radial-gradient(circle at 50% 50%, rgba(90,92,140,0.35), rgba(0,0,0,0) 65%);
+  opacity: 0.4;
 }
 
 /* BOTTOM LINKS - Start / About / Follow */
@@ -237,17 +275,51 @@ gap: 5rem;
 justify-content: center;
 margin-top: 1.5rem;
 margin-bottom: 1.5rem;
+text-transform: uppercase;
 }.bottom-links a {
   font-family: var(--ff-sans);
   font-size: 1.35rem;
   font-weight: 400;
   color: var(--ink);
   text-decoration: none;
-  transition: opacity 0.3s ease;
+  transition: opacity 0.3s ease, color 0.5s ease;
 }
 
 .bottom-links a:hover {
   opacity: 0.6;
+}
+
+/* ABOUT PANEL (overlay style, doesn't extend layout height) */
+.about-panel {
+  position: absolute;
+  bottom: 4.75rem; /* above footer, below nav */
+  left: 50%;
+  transform: translateX(-50%);
+  width: min(44ch, 80vw);
+  font-size: 0.7rem;
+  line-height: 1.25rem;
+  color: var(--ink-soft);
+  background: rgba(255,255,255,0.65);
+  backdrop-filter: blur(8px) saturate(130%);
+  -webkit-backdrop-filter: blur(8px) saturate(130%);
+  border: 1px solid var(--border);
+  border-radius: 0.85rem;
+  padding: 0.85rem 1rem 0.75rem;
+  box-shadow: 0 4px 14px -6px rgba(48,48,71,0.25);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 420ms ease;
+}
+html[data-theme="dark"] .about-panel {
+  background: rgba(20,21,33,0.55);
+  box-shadow: 0 4px 14px -6px rgba(0,0,0,0.55);
+}
+.about-panel p { margin-bottom: 0.5rem; }
+.about-panel p:last-child { margin-bottom: 0; }
+.about-panel .about-secondary { font-size: 0.65rem; opacity: 0.85; }
+.about-panel.visible {
+  opacity: 1;
+  pointer-events: auto;
 }
 
 /* RESPONSIVE */
@@ -282,6 +354,11 @@ margin-bottom: 1.5rem;
   .bottom-links a {
     font-size: 1.25rem;
   }
+  .about-panel {
+    bottom: 5.5rem;
+    font-size: 0.65rem;
+    padding: 0.75rem 0.85rem 0.65rem;
+  }
 }
 
 @media (max-width: 30rem) {
@@ -309,6 +386,12 @@ margin-bottom: 1.5rem;
   .bottom-links a {
     font-size: 1rem;
   }
+  .about-panel {
+    bottom: 5.75rem;
+    width: 88vw;
+    font-size: 0.65rem;
+    line-height: 1.15rem;
+  }
 }
 
 /* FOOTER */
@@ -320,6 +403,7 @@ margin-bottom: 1.5rem;
   color: var(--ink-soft);
   padding: 0.75rem 1.5rem;
   width: 100%;
+  transition: color 0.5s ease;
 }
 
 .footer-left {

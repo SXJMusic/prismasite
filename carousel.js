@@ -74,27 +74,30 @@ document.addEventListener("DOMContentLoaded", async () => {
     });
 
     // Caption: hide if playing, show if paused
-    if (isPlaying) {
-      hideCaption();
-    } else {
-      showCaption();
-    }
+    // COMMENTED OUT: caption display disabled
+    // if (isPlaying) {
+    //   hideCaption();
+    // } else {
+    //   showCaption();
+    // }
   }
 
   function showCaption() {
-    if (!captionEl) return;
-    const text = items[index].dataset.caption || "";
-    if (!text) return;
-    captionEl.textContent = text;
-    captionEl.classList.add("visible");
-    captionEl.setAttribute("aria-hidden", "false");
+    // COMMENTED OUT: caption display disabled
+    // if (!captionEl) return;
+    // const text = items[index].dataset.caption || "";
+    // if (!text) return;
+    // captionEl.textContent = text;
+    // captionEl.classList.add("visible");
+    // captionEl.setAttribute("aria-hidden", "false");
   }
 
   function hideCaption() {
-    if (!captionEl) return;
-    captionEl.textContent = "";
-    captionEl.classList.remove("visible");
-    captionEl.setAttribute("aria-hidden", "true");
+    // COMMENTED OUT: caption display disabled
+    // if (!captionEl) return;
+    // captionEl.textContent = "";
+    // captionEl.classList.remove("visible");
+    // captionEl.setAttribute("aria-hidden", "true");
   }
 
   function play() {
@@ -105,7 +108,7 @@ document.addEventListener("DOMContentLoaded", async () => {
     }, AUTO_INTERVAL_MS);
     isPlaying = true;
     pauseByInteraction = false;
-    hideCaption();
+    // hideCaption(); // COMMENTED OUT: caption display disabled
   }
 
   function pause() {
@@ -155,11 +158,11 @@ document.addEventListener("DOMContentLoaded", async () => {
     if (isPlaying) {
       pause();
       pauseByInteraction = true;
-      showCaption();
+      // showCaption(); // COMMENTED OUT: caption display disabled
     } else {
       play();
       pauseByInteraction = false;
-      hideCaption();
+      // hideCaption(); // COMMENTED OUT: caption display disabled
     }
   });
 
@@ -171,7 +174,7 @@ document.addEventListener("DOMContentLoaded", async () => {
   container.addEventListener("mouseenter", () => {
     pause();
     pauseByHover = true;
-    showCaption();
+    // showCaption(); // COMMENTED OUT: caption display disabled
   });
 
   container.addEventListener("mouseleave", () => {
@@ -191,7 +194,7 @@ document.addEventListener("DOMContentLoaded", async () => {
         pauseByInteraction = true;
         index = i; // jump to clicked
         update();
-        showCaption();
+        // showCaption(); // COMMENTED OUT: caption display disabled
       } else {
         // resume
         pauseByInteraction = false;

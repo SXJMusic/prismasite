@@ -189,6 +189,10 @@ document.addEventListener("DOMContentLoaded", async () => {
     item.addEventListener("click", (e) => {
       // prevent interfering with drag
       if (isSwiping) return;
+      
+      // Ignore clicks on buttons or interactive elements (e.g., theme toggle)
+      if (e.target.closest('button, a')) return;
+      
       if (isPlaying) {
         pause();
         pauseByInteraction = true;

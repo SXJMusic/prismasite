@@ -16,7 +16,8 @@ document.addEventListener("DOMContentLoaded", () => {
     icon.textContent = "🌙";
   }
 
-  toggle.addEventListener("click", () => {
+  toggle.addEventListener("click", (e) => {
+    e.stopPropagation(); // Prevent event from bubbling to other listeners
     const dark = root.getAttribute("data-theme") === "dark";
     if (dark) {
       root.removeAttribute("data-theme");

@@ -7,21 +7,46 @@
 
   <!-- Primary meta -->
   <meta name="description" content="PRISMAFUTURE creates artwork for creative projects — cover art, promotional graphics, and visual identity for musicians and creatives.">
+  <meta name="keywords" content="cover art, album art, custom artwork, visual identity, graphic design, music branding, promotional graphics, creative projects">
+  <meta name="author" content="PRISMAFUTURE">
   <meta name="robots" content="index, follow">
-  <link rel="canonical" href="https://yourdomain.example/">
+  <link rel="canonical" href="https://prismafuture.com/">
+  
+  <!-- Favicons -->
+  <link rel="icon" href="/favicon.ico" sizes="32x32">
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml">
+  <link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png">
+  <link rel="manifest" href="/favicon/site.webmanifest">
 
   <!-- Open Graph / Social -->
   <meta property="og:title" content="PRISMAFUTURE — 100% Custom Cover Art">
   <meta property="og:description" content="Cover art and visual identity for musicians, labels and creative projects.">
   <meta property="og:type" content="website">
-  <meta property="og:url" content="https://yourdomain.example/">
-  <meta property="og:image" content="https://yourdomain.example/gp-logo.png">
+  <meta property="og:url" content="https://prismafuture.com/">
+  <meta property="og:image" content="https://prismafuture.com/favicon/apple-touch-icon.png">
+  <meta property="og:image:width" content="180">
+  <meta property="og:image:height" content="180">
+  <meta property="og:site_name" content="PRISMAFUTURE">
+  
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:site" content="@prismafuture">
+  <meta name="twitter:creator" content="@gonpulvo">
+  <meta name="twitter:title" content="PRISMAFUTURE — 100% Custom Cover Art">
+  <meta name="twitter:description" content="Cover art and visual identity for musicians, labels and creative projects.">
+  <meta name="twitter:image" content="https://prismafuture.com/favicon/apple-touch-icon.png">
 
+  <!-- Preload critical assets -->
+  <link rel="preload" href="styles.css" as="style">
+  <link rel="preload" href="covers-manifest.json" as="fetch" crossorigin>
+  
   <!-- Preconnect + fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Playfair+Display:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Sitemap -->
+  <link rel="sitemap" type="application/xml" href="/sitemap.xml">
   
   <!-- Theme color for mobile browsers -->
   <meta name="theme-color" content="#f6f5fb" media="(prefers-color-scheme: light)">
@@ -34,23 +59,40 @@
     "@graph": [
       {
         "@type": "Organization",
-        "@id": "https://prismafuture.com",
+        "@id": "https://prismafuture.com/#organization",
         "name": "PRISMAFUTURE",
         "url": "https://prismafuture.com",
+        "logo": {
+          "@type": "ImageObject",
+          "@id": "https://prismafuture.com/#logo",
+          "url": "https://prismafuture.com/favicon/apple-touch-icon.png",
+          "width": 180,
+          "height": 180,
+          "caption": "PRISMAFUTURE logo"
+        },
         "contactPoint": {
           "@type": "ContactPoint",
           "contactType": "Customer Service",
           "email": "hello@prismafuture.com"
-        }
+        },
+        "sameAs": [
+          "https://instagram.com/prismafuture",
+          "https://twitter.com/prismafuture"
+        ]
       },
       {
         "@type": "WebSite",
-        "@id": "https://prismafuture.com",
+        "@id": "https://prismafuture.com/#website",
         "url": "https://prismafuture.com",
         "name": "PRISMAFUTURE",
         "description": "Artwork for creative projects — cover art, promotional graphics, and visual identity.",
         "publisher": {
-          "@id": "https://prismafuture.com"
+          "@id": "https://prismafuture.com/#organization"
+        },
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": "https://prismafuture.com/?s={search_term_string}",
+          "query-input": "required name=search_term_string"
         }
       },
       {

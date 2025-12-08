@@ -295,7 +295,7 @@ text-transform: uppercase;
   bottom: 4.75rem; /* above footer, below nav */
   left: 50%;
   transform: translateX(-50%);
-  width: min(44ch, 80vw);
+  width: min(60ch, 80vw);
   font-size: 0.7rem;
   line-height: 1.25rem;
   color: var(--ink-soft);
@@ -359,7 +359,7 @@ html[data-theme="dark"] .about-panel {
     font-size: 1.25rem;
   }
   .about-panel {
-    bottom: 5.5rem;
+    bottom: 3rem;
     font-size: 0.65rem;
     padding: 0.75rem 0.85rem 0.65rem;
   }
@@ -391,7 +391,7 @@ html[data-theme="dark"] .about-panel {
     font-size: 1rem;
   }
   .about-panel {
-    bottom: 5.75rem;
+    bottom: 4.5rem;
     width: 88vw;
     font-size: 0.65rem;
     line-height: 1.15rem;

@@ -310,6 +310,10 @@ text-transform: uppercase;
   pointer-events: none;
   transition: opacity 420ms ease;
 }
+
+.about-panel p {
+  font-size:1.35em
+}
 html[data-theme="dark"] .about-panel {
   background: rgba(20,21,33,0.55);
   box-shadow: 0 4px 14px -6px rgba(0,0,0,0.55);

@@ -292,7 +292,7 @@ text-transform: uppercase;
 /* ABOUT PANEL (overlay style, doesn't extend layout height) */
 .about-panel {
   position: absolute;
-  bottom: 4.75rem; /* above footer, below nav */
+  bottom: 1rem; /* above footer, below nav */
   left: 50%;
   transform: translateX(-50%);
   width: min(60ch, 80vw);
